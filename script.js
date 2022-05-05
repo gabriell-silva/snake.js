@@ -23,7 +23,21 @@ const createSnake = () => {
     }
 }
 
+document.addEventListener('keydown', update);
+
+const update = (e) => {
+    if (e.keyCode == 37 && direction != "right") return direction = "left";
+    if (e.keyCode == 38 && direction != "down") return direction = "up";
+    if (e.keyCode == 39 && direction != "left") return direction = "right";
+    if (e.keyCode == 40 && direction != "up") return direction = "down";
+}
+
 const initialGame = () => {
+    
+    if (snake[0].x > 15 * box && direction == "right") return snake[0].x = 0;
+    if (snake[0].x < 0 && direction == "left") return snake[0].x = 16 * box;
+    if (snake[0].y > 15 * box && direction == "down") return snake[0].y = 0;
+    if (snake[0].y < 0 && direction == "up" ) return snake[0].y = 16 * box;
     createBackground();
     createSnake();
 
